@@ -159,9 +159,6 @@ function validateForm() {
   const sub = document.getElementById("subject").value;
   const agree = document.getElementById("agree").checked;
   const contact = document.getElementById("contact").value;
-  document.getElementById("submit-btn").onclick=function(){
-    window.location.href=("file:///C:/Users/USER/Desktop/index.html")
-  }
 
   const nameErr = document.getElementById("name-error");
   const addrErr = document.getElementById("address-error");
@@ -171,6 +168,7 @@ function validateForm() {
   const agreeErr = document.getElementById("agree-error");
   const conErr = document.getElementById("contact-error");
 
+  // Clear previous errors
   nameErr.textContent = "";
   addrErr.textContent = "";
   emailErr.textContent = "";
@@ -181,36 +179,35 @@ function validateForm() {
 
   let isValid = true;
 
-  if (
-    name === "" ||
-    /\d/.test(name)||
-    name.length>12
-    ) {
-    nameErr.textContent = "Please enter your username and must not exeed 12 characters.";
+  if (name === "" || /\d/.test(name) || name.length > 12) {
+    nameErr.textContent = "Please enter your username and must not exceed 12 characters.";
     isValid = false;
   }
-  if (contact ==="" || !/^\d{11}$/.test(contact)) {
+
+  if (contact === "" || !/^\d{11}$/.test(contact)) {
     conErr.textContent = "Please enter a valid 11-digit contact number.";
     isValid = false;
-}
+  }
+
   if (addr === "") {
     addrErr.textContent = "Please enter your address.";
     isValid = false;
   }
+
   if (email === "" || !email.includes("@") || !email.includes(".")) {
     emailErr.textContent = "Please enter a valid email address.";
     isValid = false;
   }
+
   if (
     pass === "" ||
-    !/(?=.*[a-z])/.test(pass) ||      
-    !/(?=.*[A-Z])/.test(pass) ||      
-    !/(?=.*\d)/.test(pass) ||         
-    !/(?=.*[!@#$%^&*(),.?":{}|<>])/.test(pass) || 
+    !/(?=.*[a-z])/.test(pass) ||
+    !/(?=.*[A-Z])/.test(pass) ||
+    !/(?=.*\d)/.test(pass) ||
+    !/(?=.*[!@#$%^&*(),.?":{}|<>])/.test(pass) ||
     pass.length < 8
   ) {
-    passErr.textContent =
-      "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character.";
+    passErr.textContent = "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character.";
     isValid = false;
   }
 
@@ -218,6 +215,7 @@ function validateForm() {
     subErr.textContent = "Please select your course.";
     isValid = false;
   }
+
   if (!agree) {
     agreeErr.textContent = "Please agree to the above information.";
     isValid = false;
@@ -225,22 +223,16 @@ function validateForm() {
 
   if (isValid) {
     alert("Form submitted successfully!");
+    // Redirect to homepage.html in the same repository
     window.location.href = "homepage.html";
-    return false;
+    return false; // prevent default form submission
   }
 
-  return false;
+  return false; // prevent submission if invalid
 }
 
-function resetErrors() {
-  document.getElementById("name-error").textContent = "";
-  document.getElementById("address-error").textContent = "";
-  document.getElementById("email-error").textContent = "";
-  document.getElementById("password-error").textContent = "";
-  document.getElementById("subject-error").textContent = "";
-  document.getElementById("agree-error").textContent = "";
-}
 </script>
 </body>
 
 </html>
+
